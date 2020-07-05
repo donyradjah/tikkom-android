@@ -1,5 +1,6 @@
 package com.example.ld.activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
@@ -99,12 +100,19 @@ public class KuisPengetahuanActivity extends AppCompatActivity {
             }
         });
         dialogConfirm.setCanceledOnTouchOutside(false);
+        dialogConfirm.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
+                finish();
+            }
+        });
+        dialogConfirm.setCancelable(false);
 
 //        if (!dialogConfirm.isShowing()) {
 //            dialogConfirm.show();
 //        }
 
-        pDialog = new KAlertDialog(this, KAlertDialog.PROGRESS_TYPE);
+                pDialog = new KAlertDialog(this, KAlertDialog.PROGRESS_TYPE);
         pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
         pDialog.setTitleText("Sedang Mengambil Data ...");
         pDialog.setCancelable(false);
