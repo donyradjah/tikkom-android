@@ -148,7 +148,7 @@ public class ListVideoActivity extends AppCompatActivity {
                                                 , materiObject.getString("namaVideo"),
                                                 materiObject.getString("thumbnail"), materiObject.getString("file")));
                                         pDialog.dismissWithAnimation();
-                                        downloadThumbnail();
+                                      setData();
                                     }
 
                                 }
@@ -213,69 +213,6 @@ public class ListVideoActivity extends AppCompatActivity {
     }
 
 
-    void downloadThumbnail() {
-        rvListVideo.setVisibility(View.GONE);
-        DownloadPdf.setVisibility(View.VISIBLE);
-        dirPath = Utils.getRootDirPath(getApplicationContext());
-        tvProgress.setText("0 / " + videos.size());
-        i = 1;
-        for (Video video : videos) {
-            String file = video.getThumbnail();
-            url = UrlApi.BASE_URL_API + "public/upload/thumbnail-video/" + file;
-            File thumbnail = new File(dirPath + "/" + file);
-
-            if (!thumbnail.exists()) {
-                int downloadId = PRDownloader.download(url, dirPath, file)
-                        .build()
-                        .setOnStartOrResumeListener(new OnStartOrResumeListener() {
-                            @Override
-                            public void onStartOrResume() {
-
-                            }
-                        })
-                        .setOnPauseListener(new OnPauseListener() {
-                            @Override
-                            public void onPause() {
-
-                            }
-                        })
-                        .setOnCancelListener(new OnCancelListener() {
-                            @Override
-                            public void onCancel() {
-
-                            }
-                        })
-                        .setOnProgressListener(new OnProgressListener() {
-                            @Override
-                            public void onProgress(Progress progress) {
-
-                            }
-                        })
-                        .start(new OnDownloadListener() {
-                            @Override
-                            public void onDownloadComplete() {
-                                i++;
-                                tvProgress.setText(i + " / " + videos.size());
-                                Log.wtf("SIMPAN DOWNLOAD", dirPath);
-                            }
-
-                            @Override
-                            public void onError(Error error) {
-
-                            }
-
-                        });
-            } else {
-                i++;
-            }
-        }
-
-        while (i < videos.size()) {
-            tvProgress.setText(i + " / " + videos.size());
-        }
-
-        setData();
-    }
 
     void setData() {
         rvListVideo.setVisibility(View.VISIBLE);
