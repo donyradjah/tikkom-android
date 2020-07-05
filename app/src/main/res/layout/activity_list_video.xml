@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.ListVideoActivity">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+
+    <RelativeLayout
+        android:id="@+id/DownloadPdf"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+        <TextView
+            android:id="@+id/titleDownload"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/robotobold"
+            android:text="Downloading Thumbnail"
+            android:textAlignment="center"
+            android:textColor="@color/btnOrange"
+            android:textSize="@dimen/_20ssp" />
+
+        <TextView
+            android:id="@+id/tvProgress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/titleDownload"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:fontFamily="@font/robotobold"
+            android:text="10mb/20mb"
+            android:textAlignment="center"
+            android:textColor="@color/btnOrange"
+            android:textSize="@dimen/_15ssp" />
+
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvListVideo"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/_10sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+    </android.support.v7.widget.RecyclerView>
+</android.support.constraint.ConstraintLayout>

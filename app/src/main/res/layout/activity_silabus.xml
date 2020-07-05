@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.DetailMateriActivity">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:padding="@dimen/_10sdp"
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+        <TextView
+            android:id="@+id/tvNamaMateri"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:background="@drawable/button_round"
+            android:fontFamily="@font/robotobold"
+            android:paddingHorizontal="@dimen/_20sdp"
+            android:paddingVertical="@dimen/_5sdp"
+            android:text="Materi"
+            android:textColor="@color/btnOrange"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <RelativeLayout
+        android:id="@+id/DownloadPdf"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        app:layout_constraintTop_toBottomOf="@id/title">
+
+        <TextView
+            android:id="@+id/titleDownload"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/robotobold"
+            android:text="Downloading Pdf"
+            android:textAlignment="center"
+            android:textColor="@color/btnOrange"
+            android:textSize="@dimen/_20ssp" />
+
+        <TextView
+            android:id="@+id/tvProgress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/titleDownload"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:fontFamily="@font/robotobold"
+            android:text="10mb/20mb"
+            android:textAlignment="center"
+            android:textColor="@color/btnOrange"
+            android:textSize="@dimen/_15ssp" />
+
+    </RelativeLayout>
+
+    <com.github.barteksc.pdfviewer.PDFView
+        android:id="@+id/pdfView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/paging"
+        app:layout_constraintTop_toBottomOf="@id/title" />
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/paging"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:padding="@dimen/_10sdp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+
+        <TextView
+            android:id="@+id/totalHalaman"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btnPrev"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:background="@drawable/button_round"
+            android:text="prev"
+            android:textColor="@color/btnOrange"
+            app:layout_constraintRight_toLeftOf="@id/spinnerPage"
+            app:layout_constraintTop_toBottomOf="@id/totalHalaman" />
+
+        <EditText
+            android:id="@+id/spinnerPage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:hint="Halaman"
+            android:inputType="number"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/totalHalaman" />
+
+        <Button
+            android:id="@+id/btnNext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:background="@drawable/button_round"
+            android:text="next"
+            android:textColor="@color/btnOrange"
+            app:layout_constraintLeft_toRightOf="@id/spinnerPage"
+            app:layout_constraintTop_toBottomOf="@id/totalHalaman" />
+
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.constraint.ConstraintLayout>
