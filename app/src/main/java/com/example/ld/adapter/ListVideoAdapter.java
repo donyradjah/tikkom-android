@@ -1,6 +1,8 @@
 package com.example.ld.adapter;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
@@ -10,7 +12,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.appunite.appunitevideoplayer.PlayerActivity;
 import com.example.ld.R;
+import com.example.ld.activity.DetailVideoActivity;
 import com.example.ld.helper.UrlApi;
 import com.example.ld.helper.Utils;
 import com.example.ld.model.Video;
@@ -21,10 +25,12 @@ import java.util.ArrayList;
 public class ListVideoAdapter extends RecyclerView.Adapter<ListVideoAdapter.VideoHolder> {
     Context context;
     ArrayList<Video> videos;
+    Activity activity;
 
-    public ListVideoAdapter(Context context, ArrayList<Video> videos) {
+    public ListVideoAdapter(Activity activity, Context context, ArrayList<Video> videos) {
         this.context = context;
         this.videos = videos;
+        this.activity = activity;
     }
 
     @NonNull
@@ -42,6 +48,25 @@ public class ListVideoAdapter extends RecyclerView.Adapter<ListVideoAdapter.Vide
         Picasso.get().load(url).into(videoHolder.icMateri);
 
         videoHolder.tvNamaVideo.setText("" + video.getNamaVideo());
+
+        videoHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                String url = UrlApi.BASE_URL_API + "public/upload/video/" + video.getFile();
+//
+//                Intent intent = new Intent(activity, DetailVideoActivity.class);
+//
+//                intent.putExtra("judul", video.getNamaVideo());
+//                intent.putExtra("url", url);
+//                activity.startActivity(intent);
+
+                String url = UrlApi.BASE_URL_API + "public/upload/video/" + video.getFile();
+                activity.startActivity(PlayerActivity.getVideoPlayerIntent(activity,
+                        url,
+                        video.getNamaVideo()));
+
+            }
+        });
     }
 
     @Override
@@ -57,6 +82,7 @@ public class ListVideoAdapter extends RecyclerView.Adapter<ListVideoAdapter.Vide
             super(view);
             icMateri = view.findViewById(R.id.icMateri);
             tvNamaVideo = view.findViewById(R.id.tvNamaVideo);
+
         }
 
     }

@@ -43,12 +43,12 @@
         app:layout_constraintTop_toBottomOf="@id/headerLogo">
 
         <android.support.v7.widget.CardView
-            android:onClick="openMateri"
             android:id="@+id/itemMateri"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:clickable="true"
             android:foreground="?android:attr/selectableItemBackground"
+            android:onClick="openMateri"
             app:cardCornerRadius="15dp"
             app:cardElevation="2dp"
             app:cardUseCompatPadding="true"
@@ -92,12 +92,12 @@
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
-            android:onClick="openVideo"
             android:id="@+id/itemVideo"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:clickable="true"
             android:foreground="?android:attr/selectableItemBackground"
+            android:onClick="openVideo"
             app:cardCornerRadius="15dp"
             app:cardElevation="2dp"
             app:cardUseCompatPadding="true"
@@ -142,13 +142,13 @@
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
-            android:onClick="openKuisPengetahuan"
             android:id="@+id/itemKuis"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_10sdp"
             android:clickable="true"
             android:foreground="?android:attr/selectableItemBackground"
+            android:onClick="openKuisPengetahuan"
             app:cardCornerRadius="15dp"
             app:cardElevation="2dp"
             app:cardUseCompatPadding="true"
@@ -192,13 +192,13 @@
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
-            android:onClick="openKuisKeterampilan"
             android:id="@+id/itemPratikum"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_10sdp"
             android:clickable="true"
             android:foreground="?android:attr/selectableItemBackground"
+            android:onClick="openKuisKeterampilan"
             app:cardCornerRadius="15dp"
             app:cardElevation="2dp"
             app:cardUseCompatPadding="true"
@@ -242,13 +242,13 @@
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
-            android:onClick="openKuisKeterampilan"
             android:id="@+id/itemPratikum"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_10sdp"
             android:clickable="true"
             android:foreground="?android:attr/selectableItemBackground"
+            android:onClick="openSilabus"
             app:cardCornerRadius="15dp"
             app:cardElevation="2dp"
             app:cardUseCompatPadding="true"
@@ -265,7 +265,7 @@
                     android:id="@+id/icMateri"
                     android:layout_width="@dimen/_50sdp"
                     android:layout_height="@dimen/_50sdp"
-                    android:src="@drawable/book_2"
+                    android:src="@drawable/question"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -279,7 +279,7 @@
                     android:fontFamily="@font/roboto"
                     android:paddingHorizontal="@dimen/_20sdp"
                     android:paddingVertical="@dimen/_5sdp"
-                    android:text="Silabus"
+                    android:text="Info"
                     android:textAlignment="center"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/_15ssp"
@@ -293,13 +293,13 @@
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
-            android:onClick="openTentang"
             android:id="@+id/itemPratikum"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_10sdp"
             android:clickable="true"
             android:foreground="?android:attr/selectableItemBackground"
+            android:onClick="openTentang"
             app:cardCornerRadius="15dp"
             app:cardElevation="2dp"
             app:cardUseCompatPadding="true"
@@ -419,8 +419,8 @@
         android:backgroundTint="@color/btnOrange"
         android:onClick="profile"
         android:src="@drawable/ic_person_outline"
+        android:textAlignment="center"
         app:borderWidth="0dp"
-        app:elevation="21dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:pressedTranslationZ="1dp" />

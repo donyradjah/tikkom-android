@@ -40,6 +40,11 @@ public class MenuActivity extends AppCompatActivity {
         startActivity(ListVideo);
     }
 
+    public void openSilabus(View view) {
+        Intent ListVideo = new Intent(getApplicationContext(), PilihSilbusActivity.class);
+        startActivity(ListVideo);
+    }
+
     public void profile(View view) {
         Intent ListVideo = new Intent(getApplicationContext(), ProfileActivity.class);
         startActivity(ListVideo);

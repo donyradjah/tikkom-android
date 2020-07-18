@@ -127,13 +127,6 @@
         app:layout_constraintTop_toBottomOf="@id/title">
 
         <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/white"
-            android:text="HISTORY"
-            android:textColor="@color/btnOrange" />
-
-        <Button
             android:onClick="listScore"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

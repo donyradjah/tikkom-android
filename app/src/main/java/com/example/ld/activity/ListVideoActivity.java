@@ -148,7 +148,7 @@ public class ListVideoActivity extends AppCompatActivity {
                                                 , materiObject.getString("namaVideo"),
                                                 materiObject.getString("thumbnail"), materiObject.getString("file")));
                                         pDialog.dismissWithAnimation();
-                                      setData();
+                                        setData();
                                     }
 
                                 }
@@ -213,24 +213,17 @@ public class ListVideoActivity extends AppCompatActivity {
     }
 
 
-
     void setData() {
         rvListVideo.setVisibility(View.VISIBLE);
         DownloadPdf.setVisibility(View.GONE);
         if (!pDialog.isShowing()) {
             pDialog.show();
         }
-        rvListVideo.setAdapter(new ListVideoAdapter(getApplicationContext(), videos));
+        rvListVideo.setAdapter(new ListVideoAdapter(this, getApplicationContext(), videos));
 
         rvListVideo.addOnItemTouchListener(new RecyclerTouchListener(this, rvListVideo, new ClickListener() {
             @Override
             public void onClick(View view, int position) {
-                Video video = videos.get(position);
-                url = UrlApi.BASE_URL_API + "public/upload/video/" + video.getFile();
-                startActivity(PlayerActivity.getVideoPlayerIntent(getApplicationContext(),
-                        url,
-                        video.getNamaVideo()));
-
 
             }
 

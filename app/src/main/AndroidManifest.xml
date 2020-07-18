@@ -16,14 +16,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.TentangActivity"></activity>
+        <activity android:name=".activity.PilihSilbusActivity"></activity>
+        <activity android:name=".activity.TentangActivity" />
         <activity android:name=".activity.DetailKuisKeterampilanActivity" />
         <activity android:name=".activity.ListScoreActivity" />
         <activity android:name=".activity.ProfileActivity" />
         <activity android:name=".activity.SkorActivity" />
         <activity android:name=".activity.KuisKeterampilanActivity" />
         <activity android:name=".activity.KuisPengetahuanActivity" />
-        <activity android:name=".activity.DetailVideoActivity" />
+        <activity
+            android:name=".activity.DetailVideoActivity"
+            android:screenOrientation="landscape" />
         <activity android:name=".activity.VideoActivity" />
         <activity android:name=".activity.ListVideoActivity" />
         <activity android:name=".activity.DetailMateriActivity" />
@@ -36,6 +39,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activity.TujuanActivity" />
+        <activity android:name=".activity.SilabusActivity" />
     </application>
 
 </manifest>
