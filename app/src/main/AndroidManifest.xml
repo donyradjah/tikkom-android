@@ -41,6 +41,7 @@
         </activity>
         <activity android:name=".activity.TujuanActivity" />
         <activity android:name=".activity.SilabusActivity" />
+        <activity android:name=".activity.HelpActivity" />
     </application>
 
 </manifest>

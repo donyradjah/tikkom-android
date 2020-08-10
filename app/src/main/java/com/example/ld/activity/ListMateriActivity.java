@@ -19,6 +19,7 @@ import com.example.ld.helper.BaseApiService;
 import com.example.ld.helper.ClickListener;
 import com.example.ld.helper.Session;
 import com.example.ld.helper.UrlApi;
+import com.example.ld.model.DaftarMateri;
 import com.example.ld.model.Materi;
 import com.kinda.alert.KAlertDialog;
 
@@ -132,9 +133,24 @@ public class ListMateriActivity extends AppCompatActivity {
                                     for (int i = 0; i < materiArray.length(); i++) {
                                         JSONObject materiObject = materiArray.getJSONObject(i);
 
+                                        JSONArray daftarIsi = materiObject.getJSONArray("daftarisi");
+
+                                        ArrayList<DaftarMateri> daftarMateris = new ArrayList<>();
+
+                                        for (int j = 0; j < daftarIsi.length(); j++) {
+                                            DaftarMateri daftarMateri = new DaftarMateri();
+                                            JSONObject daftarMateriObject = daftarIsi.getJSONObject(j);
+
+                                            daftarMateri.setJudul(daftarMateriObject.getString("judul"));
+                                            daftarMateri.setHalaman(daftarMateriObject.getInt("halaman"));
+                                            daftarMateri.setId(j);
+
+                                            daftarMateris.add(daftarMateri);
+                                        }
+
                                         materis.add(new Materi(materiObject.getInt("id")
                                                 , materiObject.getString("namaMateri"),
-                                                materiObject.getString("file")));
+                                                materiObject.getString("file"), daftarMateris));
                                         pDialog.dismissWithAnimation();
                                         setData();
                                     }

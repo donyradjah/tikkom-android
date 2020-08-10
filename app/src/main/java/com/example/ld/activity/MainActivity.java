@@ -61,6 +61,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void help(View view) {
+        Intent ListVideo = new Intent(getApplicationContext(), HelpActivity.class);
+        startActivity(ListVideo);
+    }
+
     boolean validate() {
 
         boolean valid = true;

@@ -6,39 +6,49 @@
     android:layout_height="wrap_content"
     android:clickable="true"
     android:foreground="?android:attr/selectableItemBackground"
-    app:cardCornerRadius="15dp"
+    app:cardCornerRadius="4dp"
     app:cardElevation="2dp"
     app:cardUseCompatPadding="true">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="@dimen/_20sdp">
+        android:padding="@dimen/_10sdp">
 
         <ImageView
             android:id="@+id/icMateri"
-            android:layout_width="@dimen/_70sdp"
-            android:layout_height="@dimen/_70sdp"
-            android:src="@drawable/book"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:src="@drawable/ic_materi"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tvNamaMateri"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:background="@drawable/button_round"
+            android:layout_marginLeft="@dimen/_20sdp"
             android:fontFamily="@font/roboto"
             android:paddingHorizontal="@dimen/_20sdp"
             android:paddingVertical="@dimen/_5sdp"
             android:text="Materi"
-            android:textSize="@dimen/_20ssp"
             android:textColor="@android:color/black"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/icMateri" />
+            android:textSize="@dimen/_15ssp"
+            app:layout_constraintLeft_toRightOf="@id/icMateri"
+            app:layout_constraintTop_toTopOf="@id/icMateri" />
+
+        <TextView
+            android:id="@+id/tvHalMateri"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:fontFamily="@font/roboto"
+            android:paddingHorizontal="@dimen/_20sdp"
+            android:text="Materi"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintLeft_toRightOf="@id/icMateri"
+            app:layout_constraintTop_toBottomOf="@id/tvNamaMateri" />
 
 
     </android.support.constraint.ConstraintLayout>

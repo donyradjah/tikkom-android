@@ -1,9 +1,17 @@
 package com.example.ld.activity;
 
 import android.content.Intent;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.transition.Slide;
+import android.transition.Transition;
+import android.transition.TransitionManager;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -26,10 +34,15 @@ import com.downloader.PRDownloader;
 import com.downloader.PRDownloaderConfig;
 import com.downloader.Progress;
 import com.example.ld.R;
+import com.example.ld.adapter.ListDaftarMateriAdapter;
+import com.example.ld.adapter.ListMateriAdapter;
+import com.example.ld.adapter.RecyclerTouchListener;
 import com.example.ld.helper.BaseApiService;
+import com.example.ld.helper.ClickListener;
 import com.example.ld.helper.Session;
 import com.example.ld.helper.UrlApi;
 import com.example.ld.helper.Utils;
+import com.example.ld.model.DaftarMateri;
 import com.github.barteksc.pdfviewer.PDFView;
 import com.github.barteksc.pdfviewer.listener.OnErrorListener;
 import com.github.barteksc.pdfviewer.listener.OnLoadCompleteListener;
@@ -55,16 +68,25 @@ public class DetailMateriActivity extends AppCompatActivity {
     ImageView btnMenu;
     TextView txtMenu, totalHalaman;
     RelativeLayout DownloadPdf;
+    View overlay;
+
+    ArrayList<DaftarMateri> daftarMateris = new ArrayList<>();
+
+    ConstraintLayout listContainer;
 
     PDFView pdfView;
     int id;
     String namaMateri, file;
 
-    Button btnPrev, btnNext;
+    Button btnPrev, btnNext, btndaftarIsi;
     EditText spinnerPage;
+    boolean openOverlay = false;
     int currentPage = 0, maxPage = 0;
 
     private static final long MEGABYTE = 1024L * 1024L;
+
+    RecyclerView daftarIsi;
+    GridLayoutManager layoutmanager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +102,7 @@ public class DetailMateriActivity extends AppCompatActivity {
         apiService = UrlApi.getAPIService();
 
         btnMenu = findViewById(R.id.btnMenu);
+        btndaftarIsi = findViewById(R.id.btndaftarIsi);
         btnPrev = findViewById(R.id.btnPrev);
         btnNext = findViewById(R.id.btnNext);
         spinnerPage = findViewById(R.id.spinnerPage);
@@ -91,6 +114,28 @@ public class DetailMateriActivity extends AppCompatActivity {
         tvProgress = findViewById(R.id.tvProgress);
         btnMenu.setImageResource(R.drawable.ic_arrow_back);
         txtMenu.setText("Materi");
+        overlay = findViewById(R.id.overlay);
+        listContainer = findViewById(R.id.listContainer);
+
+
+        overlay.setVisibility(View.GONE);
+        listContainer.setVisibility(View.GONE);
+
+        btndaftarIsi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openOverlay = true;
+                toggle();
+            }
+        });
+
+        overlay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openOverlay = false;
+                toggle();
+            }
+        });
 
         dirPath = Utils.getRootDirPath(getApplicationContext());
 
@@ -99,7 +144,7 @@ public class DetailMateriActivity extends AppCompatActivity {
         id = intent.getIntExtra("id", 0);
         namaMateri = intent.getStringExtra("namaMateri");
         file = intent.getStringExtra("file");
-
+        daftarMateris = (ArrayList<DaftarMateri>) intent.getSerializableExtra("daftarIsi");
         tvNamaMateri.setText(namaMateri);
 
         url = UrlApi.BASE_URL_API + "public/upload/pdf/" + file;
@@ -117,12 +162,67 @@ public class DetailMateriActivity extends AppCompatActivity {
 
         }
 
+        for (DaftarMateri daftarMateri : daftarMateris) {
+            Log.d("Daftar Isi ", daftarMateri.getJudul());
+        }
+
         btnMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
             }
         });
+
+        daftarIsi = findViewById(R.id.daftarIsi);
+
+        layoutmanager = new GridLayoutManager(this, 1);
+        daftarIsi.setLayoutManager(layoutmanager);
+        daftarIsi.setHasFixedSize(true);
+        daftarIsi.setItemAnimator(new DefaultItemAnimator());
+
+        daftarIsi.setAdapter(new ListDaftarMateriAdapter(getApplicationContext(), daftarMateris, this));
+
+        daftarIsi.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), daftarIsi, new ClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                Log.d("Halaman", daftarMateris.get(position).getHalaman() + "");
+                int page = daftarMateris.get(position).getHalaman() - 1;
+
+                if (page >= maxPage) {
+                    pdfView.jumpTo(maxPage);
+                } else {
+                    pdfView.jumpTo(page);
+                }
+
+                openOverlay = false;
+                toggle();
+            }
+
+            @Override
+            public void onLongClick(View view, int position) {
+
+            }
+        }));
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (openOverlay) {
+            openOverlay = false;
+            toggle();
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    private void toggle() {
+        Transition transition = new Slide(Gravity.LEFT);
+        transition.setDuration(600);
+        transition.addTarget(R.id.listContainer);
+
+        TransitionManager.beginDelayedTransition(getWindow().getDecorView().findViewById(android.R.id.content), transition);
+        overlay.setVisibility(openOverlay ? View.VISIBLE : View.GONE);
+        listContainer.setVisibility(openOverlay ? View.VISIBLE : View.GONE);
     }
 
     void download() {

@@ -49,6 +49,7 @@ public class ListMateriAdapter extends RecyclerView.Adapter<ListMateriAdapter.Ma
                 detailMateri.putExtra("id", materi.getId());
                 detailMateri.putExtra("namaMateri", materi.getNamaMateri());
                 detailMateri.putExtra("file", materi.getFile());
+                detailMateri.putExtra("daftarIsi", materi.getDaftarMateris());
 
                 activity.startActivity(detailMateri);
             }

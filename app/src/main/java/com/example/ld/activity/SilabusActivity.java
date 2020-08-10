@@ -58,7 +58,7 @@ public class SilabusActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail_materi);
+        setContentView(R.layout.activity_other_pdf);
         PRDownloaderConfig config = PRDownloaderConfig.newBuilder()
                 .setReadTimeout(30_000)
                 .setConnectTimeout(30_000)

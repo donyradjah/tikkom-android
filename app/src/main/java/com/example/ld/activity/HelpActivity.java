@@ -13,15 +13,8 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.downloader.Error;
-import com.downloader.OnCancelListener;
-import com.downloader.OnDownloadListener;
-import com.downloader.OnPauseListener;
-import com.downloader.OnProgressListener;
-import com.downloader.OnStartOrResumeListener;
 import com.downloader.PRDownloader;
 import com.downloader.PRDownloaderConfig;
-import com.downloader.Progress;
 import com.example.ld.R;
 import com.example.ld.helper.BaseApiService;
 import com.example.ld.helper.Session;
@@ -40,7 +33,7 @@ import java.io.InputStream;
 
 import butterknife.ButterKnife;
 
-public class TujuanActivity extends AppCompatActivity {
+public class HelpActivity extends AppCompatActivity {
 
     String dirPath, url;
 
@@ -67,10 +60,12 @@ public class TujuanActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_other_pdf);
+
         PRDownloaderConfig config = PRDownloaderConfig.newBuilder()
                 .setReadTimeout(30_000)
                 .setConnectTimeout(30_000)
                 .build();
+
         PRDownloader.initialize(getApplicationContext(), config);
         session = new Session(getApplicationContext());
         ButterKnife.bind(this);
@@ -87,8 +82,8 @@ public class TujuanActivity extends AppCompatActivity {
         pdfView = findViewById(R.id.pdfView);
         tvProgress = findViewById(R.id.tvProgress);
         btnMenu.setImageResource(R.drawable.ic_arrow_back);
-        txtMenu.setText("Tujuan Pembelajaran");
 
+        txtMenu.setText("Help");
         dirPath = Utils.getRootDirPath(getApplicationContext());
 
         Intent intent = getIntent();
@@ -122,7 +117,7 @@ public class TujuanActivity extends AppCompatActivity {
         File pdf = new File(dirPath + "/" + file);
         Log.wtf("PDF", pdf.getAbsolutePath());
 
-        pdfView.fromAsset("tujuan_belajar.pdf")
+        pdfView.fromAsset("help.pdf")
                 .defaultPage(0)
                 .enableSwipe(false)
                 .swipeHorizontal(false)
@@ -139,7 +134,7 @@ public class TujuanActivity extends AppCompatActivity {
                     @Override
                     public void onError(Throwable t) {
                         t.printStackTrace();
-                        new KAlertDialog(TujuanActivity.this, KAlertDialog.ERROR_TYPE)
+                        new KAlertDialog(HelpActivity.this, KAlertDialog.ERROR_TYPE)
                                 .setTitleText("Oops...")
                                 .setContentText("Terjadi Kesalahan Saat Mengambil Data")
                                 .setConfirmClickListener(new KAlertDialog.OnSweetClickListener() {

@@ -93,6 +93,35 @@
         </LinearLayout>
 
 
+        <LinearLayout
+            style="@android:style/Widget.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:background="@drawable/button_white"
+            android:clickable="true"
+            android:gravity="center"
+            android:onClick="help"
+            android:padding="@dimen/_10sdp"
+            android:stateListAnimator="@null">
+
+            <ImageView
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:src="@drawable/question" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_light"
+                android:text="HELP"
+                android:textAllCaps="true"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/_25ssp" />
+
+        </LinearLayout>
+
 
     </LinearLayout>
 

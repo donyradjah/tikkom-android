@@ -1,9 +1,21 @@
 package com.example.ld.model;
 
+import java.util.ArrayList;
+
 public class Materi {
 
     int id;
     String namaMateri, file;
+
+    ArrayList<DaftarMateri> daftarMateris;
+
+    public ArrayList<DaftarMateri> getDaftarMateris() {
+        return daftarMateris;
+    }
+
+    public void setDaftarMateris(ArrayList<DaftarMateri> daftarMateris) {
+        this.daftarMateris = daftarMateris;
+    }
 
     public Materi() {
     }
@@ -12,6 +24,14 @@ public class Materi {
         this.id = id;
         this.namaMateri = namaMateri;
         this.file = file;
+    }
+
+
+    public Materi(int id, String namaMateri, String file, ArrayList<DaftarMateri> daftarMateris) {
+        this.id = id;
+        this.namaMateri = namaMateri;
+        this.file = file;
+        this.daftarMateris = daftarMateris;
     }
 
     public int getId() {
